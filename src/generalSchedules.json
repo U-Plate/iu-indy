@@ -1,13 +1,13 @@
 {
-  "Example Dining Hall": {
+  "Tower Dining": {
     "Breakfast": {
-      "Sunday": { "Start": "08:00", "End": "10:00" },
-      "Monday": { "Start": "07:00", "End": "10:00" },
-      "Tuesday": { "Start": "07:00", "End": "10:00" },
-      "Wednesday": { "Start": "07:00", "End": "10:00" },
-      "Thursday": { "Start": "07:00", "End": "10:00" },
-      "Friday": { "Start": "07:00", "End": "10:00" },
-      "Saturday": { "Start": "08:00", "End": "10:00" }
+      "Sunday": { "Start": "07:00", "End": "09:00" },
+      "Monday": { "Start": "07:00", "End": "09:00" },
+      "Tuesday": { "Start": "07:00", "End": "09:00" },
+      "Wednesday": { "Start": "07:00", "End": "09:00" },
+      "Thursday": { "Start": "07:00", "End": "09:00" },
+      "Friday": { "Start": "07:00", "End": "09:00" },
+      "Saturday": { "Start": "07:00", "End": "09:00" }
     },
     "Brunch": null,
     "Lunch": {
@@ -21,13 +21,13 @@
     },
     "Late Lunch": null,
     "Dinner": {
-      "Sunday": { "Start": "17:00", "End": "21:00" },
-      "Monday": { "Start": "17:00", "End": "21:00" },
-      "Tuesday": { "Start": "17:00", "End": "21:00" },
-      "Wednesday": { "Start": "17:00", "End": "21:00" },
-      "Thursday": { "Start": "17:00", "End": "21:00" },
-      "Friday": { "Start": "17:00", "End": "21:00" },
-      "Saturday": null
+      "Sunday": { "Start": "17:00", "End": "20:00" },
+      "Monday": { "Start": "17:00", "End": "20:00" },
+      "Tuesday": { "Start": "17:00", "End": "20:00" },
+      "Wednesday": { "Start": "17:00", "End": "20:00" },
+      "Thursday": { "Start": "17:00", "End": "20:00" },
+      "Friday": { "Start": "17:00", "End": "20:00" },
+      "Saturday": { "Start": "17:00", "End": "20:00" }
     }
   }
 }

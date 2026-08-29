@@ -1,3 +1,4 @@
-import { Example } from "./example";
+import { IUIndy } from "./iu-indy";
 
-export default new Example();
+export default new IUIndy();
+

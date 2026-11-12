@@ -6,6 +6,7 @@ import { Env } from "@uplate/types/env";
 import { FoodItem } from "@uplate/types/foods";
 import { MealItem } from "@uplate/types/meals";
 import { Menu } from "@uplate/types/menu";
+import { stableFoodId } from "./foodIdentity.ts";
 
 const SCHOOL_ID = "iu-indy";
 const SCHOOL_GOV_CODE = 151111;
@@ -301,7 +302,7 @@ class IUIndy extends School {
     }
 
     const mealTimeHours: Record<string, string> = {};
-    const foodItemsMap = new Map<string, any>();
+    const foodItemsMap = new Map<string, FoodItem>();
 
     const DAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const dayOfWeek = DAY_NAMES[new Date(`${date}T12:00:00Z`).getDay()];
@@ -330,10 +331,15 @@ class IUIndy extends School {
       for (const category of categories) {
         const station = String(category.name || "Main").trim();
         for (const item of category.items ?? []) {
-          const id = String(item.id);
+          // item.id changes across meals, days, and upstream republishes.
+          // Both meal references and the foods upsert must use recipe identity.
+          const parsed = this.parseItem(item, "");
+          if (!parsed) continue;
+          const id = await stableFoodId(item, parsed);
+          parsed.id = id;
           meals[matchedMeal].push({ id, station });
           if (!foodItemsMap.has(id)) {
-            foodItemsMap.set(id, item);
+            foodItemsMap.set(id, parsed);
           }
         }
       }
@@ -349,11 +355,7 @@ class IUIndy extends School {
       meals[mealName] = Array.from(seen.values());
     }
 
-    const foods: FoodItem[] = [];
-    for (const [id, item] of foodItemsMap) {
-      const parsed = this.parseItem(item, id);
-      if (parsed) foods.push(parsed);
-    }
+    const foods = Array.from(foodItemsMap.values());
 
     const meta = HALL_METADATA[loc] ?? { address: "", latitude: "", longitude: "" };
     const metadata = {
